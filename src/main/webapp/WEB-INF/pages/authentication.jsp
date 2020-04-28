@@ -18,12 +18,12 @@
                 <form:form name="user" method="POST">
                     <div class="form-label-group">
                         <label for="login">Логин</label>
-                        <input type="text" id="login"  name="login" class="form-control" placeholder="Login" value="${user.login}" autofocus>
+                        <input type="text" id="login"  name="login" class="form-control" value="${user.login}" autofocus>
                     </div>
 
                     <div class="form-label-group">
                         <label for="password">Пароль</label>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" value="${user.password}">
+                        <input type="password" id="password" name="password" class="form-control" value="${user.password}">
                     </div>
                     <p></p>
                     <button class="btn btn-lg btn-outline-primary btn-block btn-login mb-2" type="submit">Войти</button>

@@ -47,6 +47,9 @@ public class UserService {
        return userDao.find(user);
     }
 
+    /**
+     * Обновляет рейтинг у пользователя
+     */
     @Transactional
     public void addScore(User user, int score){
         user.updateScore(score);

@@ -29,17 +29,17 @@
                 <form:form name="user" method="post">
                     <div class="form-label-group">
                         <label for="login">Логин</label>
-                        <input type="text" id="login" name="login" class="form-control" placeholder="Login" value="${user.login}" autofocus>
+                        <input type="text" id="login" name="login" class="form-control" value="${user.login}" autofocus>
                     </div>
 
                     <div class="form-label-group">
                         <label for="password">Пароль</label>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" value="${user.password}">
+                        <input type="password" id="password" name="password" class="form-control" value="${user.password}">
                     </div>
 
                     <div class="form-label-group">
                         <label for="inputPassword1">Повторите пароль</label>
-                        <input type="password" id="inputPassword1" class="form-control" placeholder="Password" required>
+                        <input type="password" id="inputPassword1" class="form-control" required>
                     </div>
                     <p></p>
 

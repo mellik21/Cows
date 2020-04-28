@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Queue;
 
 @Repository
 public class UserDao implements Dao<User>{
@@ -26,7 +27,7 @@ public class UserDao implements Dao<User>{
 
     @Override
     public User get(int id) {
-        return  sessionFactory.getCurrentSession().get(User.class, id);
+       return  sessionFactory.getCurrentSession().get(User.class, id);
     }
 
     @Override
@@ -47,6 +48,9 @@ public class UserDao implements Dao<User>{
         session.delete(user);
     }
 
+    /**
+     * Ищет пользователя в БД, зная его логин и пароль, но не зная id (при авторизации)
+     */
     public int find(User user) {
         Session session =  sessionFactory.getCurrentSession();
 

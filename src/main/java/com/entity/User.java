@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user", schema = "game")
-public class User {
+public class User implements Comparable<User> {
 
     @Id
     @Column(name = "user_id")
@@ -64,9 +64,17 @@ public class User {
         this.score = score;
     }
 
+    /**
+     * Пересчитывает среднее число попыток
+     */
     public void updateScore(int newScore){
         sum+=newScore;
         game++;
         score = sum/game;
+    }
+
+    @Override
+    public int compareTo(User o) {
+        return this.getScore() - o.getScore();
     }
 }

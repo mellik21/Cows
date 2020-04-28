@@ -21,6 +21,9 @@ public class AuthorizationController {
         this.userService = userService;
     }
 
+    /**
+     * Загрузка страницы - перенаправляет на страницу авторизации
+     */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView load() {
         ModelAndView modelAndView = new ModelAndView();
@@ -28,13 +31,18 @@ public class AuthorizationController {
         return modelAndView;
     }
 
+    /**
+     * GET Загружает страницу авторизации
+     */
     @RequestMapping(value = "/authentication", method = RequestMethod.GET)
     public ModelAndView loadStartPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("authentication");
         return modelAndView;
     }
-
+    /**
+     * POST Проверяет наличие пользователя в бд и перенаправляет на главную страницу
+     */
     @RequestMapping(value = "/authentication", method = RequestMethod.POST)
     public ModelAndView authenticate(HttpSession httpSession, @ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();
@@ -47,11 +55,13 @@ public class AuthorizationController {
         }else{
             user.setId(id);
             httpSession.setAttribute("user",user);
-            modelAndView.setViewName("home");
+            modelAndView.setViewName("redirect:/rating");
         }
         return modelAndView;
     }
-
+    /**
+     * GET Загружает страницу регистрации
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
@@ -59,6 +69,10 @@ public class AuthorizationController {
         return modelAndView;
     }
 
+    /**
+     * POST добавляет нового пользователя
+     * Устанавливает рейтинг и число игр - 0
+     */
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public ModelAndView registration(@ModelAttribute("user") User user) {
         ModelAndView modelAndView = new ModelAndView();

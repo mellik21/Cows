@@ -23,7 +23,11 @@ public class GameController {
     public void setUserService(UserService userService) {
         this.userService = userService;
     }
-
+    /**
+     * GET Загружает страницу игры
+     * Создает новую игру - генерирует новое число
+     * Обнуляет число попыток
+     */
     @RequestMapping(value = "/game", method = RequestMethod.GET)
     public ModelAndView loadGame(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView();
@@ -36,7 +40,11 @@ public class GameController {
         httpSession.setAttribute("score", 0);
         return modelAndView;
     }
-
+    /**
+     * GET Вызывается при нажатии на кнопку "Новая игра" или угадывании
+     * Создает новую игру и записывает результаты предыдущей
+     * Обновляет рейтинг у пользователя
+     */
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public ModelAndView game(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView();
@@ -50,6 +58,11 @@ public class GameController {
         return modelAndView;
     }
 
+    /**
+     * POST Проверяет число введенное пользователем
+     * Увеличивает число попыток при неугадывании
+     * Перенаправляет на создание новой игры при угадывании
+     */
     @RequestMapping(value = "/game", method = RequestMethod.POST)
     public ModelAndView testValue(HttpSession httpSession, @RequestParam("select") int[] nums) {
         System.out.println(Arrays.toString(nums));
