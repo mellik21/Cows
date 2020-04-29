@@ -49,7 +49,6 @@ public class GameController {
     public ModelAndView game(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView();
         User user = (User) httpSession.getAttribute("user");
-        //Нашла ошибку - если пользователь начал новую игру, считается что он угадал с первой попытки
         int score = (int) httpSession.getAttribute("score");
         userService.addScore(user,score);
         Game newGame = new Game();
