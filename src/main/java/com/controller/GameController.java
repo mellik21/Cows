@@ -37,7 +37,6 @@ public class GameController {
         httpSession.setAttribute("game", game);
         modelAndView.addObject("username", user.getLogin());
         modelAndView.addObject("score", 0);
-        httpSession.setAttribute("score", 0);
         return modelAndView;
     }
     /**
@@ -48,9 +47,12 @@ public class GameController {
     @RequestMapping(value = "/new", method = RequestMethod.GET)
     public ModelAndView game(HttpSession httpSession) {
         ModelAndView modelAndView = new ModelAndView();
-        User user = (User) httpSession.getAttribute("user");
-        int score = (int) httpSession.getAttribute("score");
-        userService.addScore(user,score);
+        Game game = (Game)httpSession.getAttribute("game");
+        if(game.isWin()) {
+            User user = (User) httpSession.getAttribute("user");
+            int score = game.getAttempts();
+            userService.addScore(user, score);
+        }
         Game newGame = new Game();
         modelAndView.addObject("game", newGame);
         modelAndView.setViewName("redirect:/game");
@@ -68,21 +70,15 @@ public class GameController {
         System.out.println(Arrays.toString(nums));
         ModelAndView modelAndView = new ModelAndView();
         Game game = (Game) httpSession.getAttribute("game");
-        int score = (int) httpSession.getAttribute("score");
         if (game.check(nums)) {
             modelAndView.setViewName("redirect:/new");
+            game.setWin(true);
         } else {
-            score++;
-            modelAndView.addObject("score", score);
-            modelAndView.addObject("game",game);
-
-            System.out.println(Arrays.toString(game.getResults().toArray()));
-
+            game.setAttempts(game.getAttempts()+1);
             modelAndView.setViewName("game");
         }
         User user = (User) httpSession.getAttribute("user");
         modelAndView.addObject("username", user.getLogin());
-        httpSession.setAttribute("score", score);
         return modelAndView;
     }
 }

@@ -8,7 +8,7 @@ public class Game {
     List<String>results = new ArrayList<>();
     private String num;
     private int attempts;
-
+    private  boolean win;
     /**
      * Конструктор - генерирует число из 4х неповторяющихся цифр
       */
@@ -18,6 +18,7 @@ public class Game {
         }
         num = generateNum();
         attempts = 0;
+        win = false;
     }
 
     public Set<Integer> getNumber() {
@@ -75,5 +76,13 @@ public class Game {
 
     public void setAttempts(int attempts) {
         this.attempts = attempts;
+    }
+
+    public boolean isWin() {
+        return win;
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
     }
 }
