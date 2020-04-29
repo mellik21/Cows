@@ -77,6 +77,7 @@ public class GameController {
             game.setAttempts(game.getAttempts()+1);
             modelAndView.setViewName("game");
         }
+        httpSession.setAttribute("game",game);
         User user = (User) httpSession.getAttribute("user");
         modelAndView.addObject("username", user.getLogin());
         return modelAndView;
